@@ -1,0 +1,65 @@
+
+@import model.Customer
+@(customerForm: Form[Customer])(implicit messages: Messages, flash: Flash)
+
+@main("Welcome to Play") {
+
+<div class="row">
+
+    <form role="form" action ='@routes.CustomerController.processRegistration'>
+        <div class="col-lg-6">
+            <div class="well well-sm"><strong><span class="glyphicon glyphicon-asterisk"></span>Required Field</strong></div>
+            <div>
+            <p style="color:red">
+                @if(flash.get("error").isDefined){
+                @flash.get("error")}
+            </p>
+            <p style="color:red">
+                @if(flash.get("success").isDefined){
+                @flash.get("success")}
+            </p>
+            </div>
+            <div class="form-group">
+                <label for="username">UserName</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" name="username" value='@customerForm("username").value' id="username" placeholder="Enter User Name" required>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <div class="input-group">
+                    <input type="password" class="form-control" value='@customerForm("password").value' id="password" name="password" placeholder="Enter Password" required>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="name">Name</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" value='@customerForm("name").value' id="name" name="name" placeholder="Name" required>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <div class="input-group">
+                    <input type="email" class="form-control" value='@customerForm("email").value' id="email" name="email" placeholder="Email" required>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="mobile">Mobile</label>
+                <div class="input-group">
+                    <input type="number" class="form-control" value='@customerForm("mobile").value' id="mobile" name="mobile" placeholder="Mobile" required>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary" value="search">Submit!!</button>
+        </div>
+    </form>
+    </div>
+<form role="form" action='@routes.CustomerController.showLogin'>
+    <button type="submit" class="btn btn-primary pull-right" value="search">Login!!</button>
+</form>
+
+}

@@ -1,0 +1,50 @@
+@*
+* This template takes a single argument, a String containing a
+* message to display.
+*@
+@import model.Login
+@(loginForm: Form[Login])(implicit messages: Messages, flash:Flash)
+
+@main("Welcome to Play") {
+
+<div class="col-lg-6"></div>
+
+<div class="row">
+    <p style="color:red">
+        @if(flash.get("error").isDefined){
+        @flash.get("error")}
+    </p>
+    <p style="color:red">
+        @if(flash.get("success").isDefined){
+        @flash.get("success")}
+    </p>
+    <form role="form" action ='@routes.CustomerController.processLogin'>
+        <div class="col-lg-6">
+            <div class="well well-sm"><strong><span class="glyphicon glyphicon-asterisk"></span>Required Field</strong></div>
+            <div class="form-group">
+                <label for="username">UserName</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" name="username" value='@loginForm("username").value' id="username" placeholder="Enter User Name" required>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <div class="input-group">
+                    <input type="password" class="form-control" value='@loginForm("password").value' id="password" name="password" placeholder="Enter Password" required>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary" value="search">Submit!!
+            </button>
+        </div>
+    </form>
+    <form role="form" action='@routes.CustomerController.index'>
+        <button type="submit" class="btn btn-primary pull-right" value="search">Register!!
+        </button>
+
+    </form>
+</div>
+
+
+}
